@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Terraza Banquetería | Eventos de Excelencia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        :root {
+            --color-fondo: #F8F5F2;
+            --color-acento: #C4A287;
+            --color-secundario: #7A6456;
+            --color-dorado: #B89F7B;
+            --color-texto: #4A403A;
+            --sombra-suave: 0 2px 15px rgba(122, 100, 86, 0.1);
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        /* Header y Menú */
+        .header {
+            background: rgba(248, 245, 242, 0.98);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--color-secundario);
+            text-decoration: none;
+        }
+
+        .menu-desktop {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .menu-desktop a {
+            color: var(--color-texto);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .menu-desktop a:hover {
+            color: var(--color-acento);
+        }
+
+        .menu-desktop a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--color-dorado);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .menu-desktop a:hover::after {
+            width: 100%;
+        }
+
+        .boton-cta {
+            background: var(--color-dorado);
+            color: white !important;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .boton-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(184, 159, 123, 0.3);
+        }
+
+        .swiper-wrapper{
+            max-width: 300px;
+        }
+
+
+
+        /* Menú Mobile */
+        .menu-mobile-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-secundario);
+            cursor: pointer;
+        }
+
+        .menu-mobile {
+            display: none;
+            background: var(--color-fondo);
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .menu-mobile.active {
+            display: block;
+        }
+
+        .menu-mobile a {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--color-texto);
+            border-bottom: 1px solid rgba(196, 162, 135, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-desktop {
+                display: none;
+            }
+
+            .menu-mobile-btn {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .swiper-wrapper{
+                max-width: 50px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-mobile {
+                display: none !important;
+            }
+        }
+
+        /* Sección Hero */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(rgba(122, 100, 86, 0.5), rgba(122, 100, 86, 0.5)), url('img/table.jpeg') center/cover;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .boton-dorado {
+            background: var(--color-dorado);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .boton-dorado:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(184, 159, 123, 0.4);
+        }
+
+        .seccion-nosotros {
+            padding: 5rem 2rem;
+            background: rgba(248, 245, 242, 0.7);
+        }
+
+        .nosotros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .nosotros-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(122, 100, 86, 0.1);
+            position: relative;
+        }
+
+        .decoracion-linea {
+            width: 50px;
+            height: 3px;
+            background: var(--color-dorado);
+            margin: 1rem 0;
+        }
+
+        .lista-valores li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .lista-valores i {
+            color: var(--color-acento);
+        }
+
+        .seccion-servicios {
+            padding: 5rem 2rem;
+            background: var(--color-secundario);
+            color: white;
+        }
+
+        .servicio-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            min-height: 300px;
+            text-align: center;
+        }
+
+        .icono-servicio {
+            font-size: 2.5rem;
+            color: var(--color-dorado);
+            margin-bottom: 1.5rem;
+            font-style: normal;
+        }
+
+        .seccion-galeria{
+            padding: 5rem 2rem;
+        }
+
+        .swiper {
+            padding: 2rem 0 4rem !important;
+            margin-left: 3rem;
+            margin-right: 3rem;
+            text-align: center;
+        }
+
+
+        .site-footer {
+            background: var(--color-secundario);
+            color: white;
+            padding: 4rem 2rem 0;
+        }
+
+        .footer-contenido {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-columna h4 {
+            color: var(--color-dorado);
+            margin-bottom: 1.5rem;
+        }
+
+        .iconos-redes {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo"><img src="img/icon.jpg" alt="logo" width="40px"> Banquetería La Terraza</a>
+
+            <!-- Menú Desktop -->
+            <div class="menu-desktop">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#galeria">Galería</a>
+                <a href="https://wa.me/7721251130?text=Hola%20La%20Terraza%20Banquetería,%20me%20interesa%20recibir%20información%20sobre%20sus%20servicios"
+                    class="boton-cta">Cotizar</a>
+            </div>
+
+            <!-- Menú Mobile -->
+            <button class="menu-mobile-btn" id="mobileBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menú Mobile (Contenido) -->
+    <div class="menu-mobile" id="mobileMenu">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a
+            href="https://wa.me/7721251130?text=Hola%20La%20Terraza%20Banquetería,%20me%20interesa%20recibir%20información%20sobre%20sus%20servicios">Cotizar</a>
+    </div>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>20 años creando experiencias gastronómicas</h1>
+            <p>¡Haz de tus eventos una experiencia inolvidable!</p>
+            <a
+                href="https://wa.me/7721251130?text=Hola%20La%20Terraza%20Banquetería,%20me%20interesa%20recibir%20información%20sobre%20sus%20servicios"><button
+                    class="boton-dorado">Solicitar propuesta</button></a>
+        </div>
+    </section>
+
+    <section id="nosotros" class="seccion-nosotros">
+        <div class="nosotros-contenido">
+            <h2 class="titulo-seccion">Nuestra Esencia</h2>
+
+            <div class="nosotros-grid">
+                <div class="nosotros-card vision">
+                    <div class="decoracion-linea"></div>
+                    <h3>Visión</h3>
+                    <p>Ser una empresa altamente reconocida, líder en la creación e innovación de experiencias
+                        gastronómicas para nuestros clientes en el centro del país, al ofrecerles los más altos
+                        estándares de calidad en el servicio y marcando siempre una tendencia diferenciadora.</p>
+                </div>
+
+                <div class="nosotros-card mision">
+                    <div class="decoracion-linea"></div>
+                    <h3>Misión</h3>
+                    <p>Somos una empresa sólida, dedicada a la creación de experiencias gastronómicas, que promueve la
+                        excelencia en el servicio, calidad e innovación. Estamos interesados en lograr la satisfacción
+                        total de nuestros clientes dentro del centro del país.</p>
+                </div>
+
+                <div class="nosotros-card valores">
+                    <div class="decoracion-linea"></div>
+                    <h3>Nuestros Pilares</h3>
+                    <ul class="lista-valores">
+                        <li><i class="fas fa-handshake"></i>Respeto</li>
+                        <li><i class="fas fa-award"></i>Profesionalismo</li>
+                        <li><i class="fas fa-users"></i>Trabajo en equipo</li>
+                        <li><i class="fas fa-chart-line"></i>Rentabilidad</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="seccion-servicios">
+        <div class="servicios-contenido">
+            <h2 class="titulo-seccion">Nuestros Servicios</h2>
+
+            <div class="swiper servicios-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Repetir para cada servicio -->
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">👨🏻‍🍳</i>
+                        <h3>Catering</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🛎️</i>
+                        <h3>Menú personalizado</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">📅</i>
+                        <h3>Event planning</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🪑</i>
+                        <h3>Renta de equipo</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🌹</i>
+                        <h3>Cenas románticas</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🎄</i>
+                        <h3>Cenas navideñas</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🧀</i>
+                        <h3>Mesa de queso</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🏢</i>
+                        <h3>Servicios empresariales</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🌮</i>
+                        <h3>Taquizas</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🍽️</i>
+                        <h3>Buffet</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🥪</i>
+                        <h3>Canapés y bocadillos</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🍱</i>
+                        <h3>Box lunch</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">☕</i>
+                        <h3>Coffee break</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🥂</i>
+                        <h3>Banquetes y eventos sociales</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+                    <div class="swiper-slide servicio-card">
+                        <i class="icono-servicio">🥗</i>
+                        <h3>Desayuno, comida y cenas</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore iste dicta aperiam ipsum libero, autem maiores veritatis. Aliquam, explicabo harum. Dolores delectus aliquam enim soluta a inventore repudiandae et officia!</p>
+                    </div>
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="seccion-galeria">
+        <h2 class="titulo-seccion">Galería</h2>
+
+        <div class="swiper galeria-swiper">
+            <div class="swiper-wrapper">
+                <!-- Repetir para cada imagen -->
+                <div class="swiper-slide">
+                    <img src="img/chef1.jpeg" alt="Evento corporativo" loading="lazy" width="50%" height="400px">
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/chef2.jpeg" alt="Evento corporativo" loading="lazy" width="50%" height="400px">
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/pink_table.jpeg" alt="Evento corporativo" loading="lazy" width="50%" height="400px">
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/table.jpeg" alt="Evento corporativo" loading="lazy" width="50%" height="400px">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-contenido">
+            <div class="footer-columna">
+                <h4>La Terraza Banquetería</h4>
+                <p>20 años de experiencia creando momentos memorables</p>
+            </div>
+
+            <div class="footer-columna">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 555-1234-5678</li>
+                    <li><i class="fas fa-envelope"></i> contacto@laterraza.com</li>
+                </ul>
+            </div>
+
+            <div class="footer-columna">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Políticas de privacidad</a></li>
+                    <li><a href="#">Términos de servicio</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-columna redes-sociales">
+                <h4>Síguenos</h4>
+                <div class="iconos-redes">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <p>© 2024 La Terraza Banquetería. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="animations.js"></script>
+
+</html>
